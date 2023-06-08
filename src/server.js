@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
-const sql = require('mssql');
+const cors = require('cors');
 
 //settings
 app.set('port', process.env.PORT || 5000);
+//const whiteList = ['http://localhost','https://fluttertestappnoti.azurewebsites.net']
 
 const dbConfig = {
   server: 'residencialesproyecto.database.windows.net',
@@ -15,6 +16,9 @@ const dbConfig = {
     trustServerCertificate: true
   }
 };
+
+//midelwares
+app.use(cors());
 
 // Rutas
 const usersRoutes = require('./routes/users')(dbConfig);
